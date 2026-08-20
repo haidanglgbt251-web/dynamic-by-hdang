@@ -1,0 +1,285 @@
+# HDang Dynamic Tweak Configuration
+# Dynamic Island cho iOS 14-15.8.8
+
+tweak:
+  name: "HDang Dynamic"
+  package: "com.hdang.dynamic"
+  version: "1.0.0"
+  author: "HDang"
+  description: "Dynamic Island đầy đủ tính năng như iPhone 14 Pro"
+  
+  # Thông tin build
+  build:
+    target: "iphone:clang:14.5:14.0"
+    archs:
+      - arm64
+      - arm64e
+    frameworks:
+      - UIKit
+      - AudioToolbox
+      - MediaPlayer
+      - AVFoundation
+    libraries:
+      - mobilesubstrate
+      - preferenceloader
+    
+  # Cài đặt
+  install:
+    target_process: "SpringBoard"
+    after_install: "killall -9 SpringBoard"
+    
+  # Tính năng chính
+  features:
+    dynamic_island:
+      enabled: true
+      show_on_lockscreen: true
+      prevent_touch_loss: true
+      always_visible: true
+      
+    # Hiển thị
+    display:
+      camera_dot: true
+      sensor_dot: true
+      blur_effect: true
+      dark_mode: true
+      adaptive_color: true
+      
+    # Tương tác
+    gestures:
+      tap_to_expand: true
+      double_tap_fullscreen: true
+      long_press_expand: true
+      pan_to_move: true
+      haptic_feedback: true
+      
+    # Âm nhạc
+    music:
+      enabled: true
+      show_album_art: true
+      show_progress: true
+      show_artist: true
+      show_title: true
+      auto_collapse: 5  # giây
+      
+    # Cuộc gọi
+    call:
+      enabled: true
+      show_caller_name: true
+      show_call_status: true
+      incoming_call_icon: "phone.fill"
+      
+    # Pin
+    battery:
+      enabled: true
+      show_percentage: true
+      show_charging: true
+      low_battery_alert: true
+      low_battery_threshold: 0.2
+      
+    # Hệ thống
+    system:
+      airplane_mode: true
+      bluetooth: true
+      wifi: true
+      hotspot: true
+      airplay: true
+      
+    # Khác
+    misc:
+      screen_recording: true
+      face_id: true
+      volume_indicator: true
+      timer: true
+      notifications: true
+      
+  # Animation
+  animations:
+    spring_damping: 0.8
+    spring_velocity: 0.5
+    duration: 0.3
+    pulse_effect: true
+    smooth_transition: true
+    
+  # Kích thước
+  dimensions:
+    original_width: 120
+    original_height: 35
+    expanded_width_offset: 60
+    expanded_height_offset: 20
+    corner_radius: 17.5
+    screen_margin_top: 10
+    
+  # Màu sắc
+  colors:
+    background: "#000000"
+    text_primary: "#FFFFFF"
+    text_secondary: "#808080"
+    camera_dot: "#1A1A1A"
+    sensor_dot: "#262626"
+    accent_color: "#007AFF"
+    
+  # Notification
+  notifications:
+    queue_enabled: true
+    auto_dismiss: 3  # giây
+    show_icon: true
+    show_title: true
+    show_message: true
+    
+  # Anti-conflict
+  compatibility:
+    ios_versions:
+      - "14.0"
+      - "14.1"
+      - "14.2"
+      - "14.3"
+      - "14.4"
+      - "14.5"
+      - "14.6"
+      - "14.7"
+      - "14.8"
+      - "15.0"
+      - "15.1"
+      - "15.2"
+      - "15.3"
+      - "15.4"
+      - "15.5"
+      - "15.6"
+      - "15.7"
+      - "15.8"
+      - "15.8.8"
+      
+    devices:
+      - "iPhone X"
+      - "iPhone XR"
+      - "iPhone XS"
+      - "iPhone XS Max"
+      - "iPhone 11"
+      - "iPhone 11 Pro"
+      - "iPhone 11 Pro Max"
+      - "iPhone 12"
+      - "iPhone 12 Mini"
+      - "iPhone 12 Pro"
+      - "iPhone 12 Pro Max"
+      - "iPhone 13"
+      - "iPhone 13 Mini"
+      - "iPhone 13 Pro"
+      - "iPhone 13 Pro Max"
+      
+    jailbreaks:
+      - "unc0ver"
+      - "Taurine"
+      - "checkra1n"
+      - "Odyssey"
+      
+  # Preferences
+  preferences:
+    bundle_id: "com.hdang.dynamic"
+    settings_page: true
+    enable_switch: true
+    
+    options:
+      - key: "enabled"
+        type: "switch"
+        default: true
+        label: "Enable HDang Dynamic"
+        
+      - key: "show_on_lockscreen"
+        type: "switch"
+        default: true
+        label: "Show on Lockscreen"
+        
+      - key: "music_integration"
+        type: "switch"
+        default: true
+        label: "Music Controls"
+        
+      - key: "call_integration"
+        type: "switch"
+        default: true
+        label: "Call Notifications"
+        
+      - key: "battery_integration"
+        type: "switch"
+        default: true
+        label: "Battery Display"
+        
+      - key: "system_integration"
+        type: "switch"
+        default: true
+        label: "System Status"
+        
+      - key: "animations"
+        type: "switch"
+        default: true
+        label: "Animations"
+        
+      - key: "haptic_feedback"
+        type: "switch"
+        default: true
+        label: "Haptic Feedback"
+        
+      - key: "island_width"
+        type: "slider"
+        default: 120
+        min: 80
+        max: 200
+        label: "Island Width"
+        
+      - key: "island_height"
+        type: "slider"
+        default: 35
+        min: 25
+        max: 50
+        label: "Island Height"
+        
+      - key: "corner_radius"
+        type: "slider"
+        default: 17.5
+        min: 10
+        max: 25
+        label: "Corner Radius"
+        
+      - key: "auto_collapse_time"
+        type: "slider"
+        default: 5
+        min: 1
+        max: 15
+        label: "Auto Collapse (seconds)"
+        
+  # Hooks
+  hooks:
+    springboard:
+      - "applicationDidFinishLaunching:"
+      - "setupHDangDynamic"
+      - "addToLockScreen:"
+      
+    lockscreen:
+      - "viewDidLoad"
+      - "addDynamicIslandToLockScreen"
+      
+    homescreen:
+      - "hitTest:withEvent:"
+      
+    system_gesture:
+      - "gestureRecognizer:shouldReceiveTouch:"
+      
+  # Bảo vệ cảm ứng
+  touch_protection:
+    enabled: true
+    prevent_loss: true
+    pass_through: true
+    gesture_priority: high
+    
+  # Hiệu suất
+  performance:
+    memory_optimization: true
+    battery_optimization: true
+    smooth_rendering: true
+    low_power_mode: false
+    
+  # Debug
+  debug:
+    logging: false
+    verbose: false
+    crash_reporting: true

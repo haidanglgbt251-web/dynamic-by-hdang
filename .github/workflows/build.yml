@@ -29,13 +29,22 @@ jobs:
         tar -xf iPhoneOS14.5.sdk.tar.xz
         ls -la
     
+    - name: Check files
+      run: |
+        pwd
+        ls -la
+        echo "--- Checking Makefile ---"
+        cat Makefile
+        echo "--- Checking control ---"
+        cat control
+    
     - name: Build Tweak
       run: |
         export THEOS=/opt/theos
         export PATH=$PATH:/opt/theos/bin
         make clean
         make package
-    
+      
     - name: Upload .deb file
       uses: actions/upload-artifact@v4
       with:
